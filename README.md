@@ -1,10 +1,16 @@
 --------------------------------------------------------------------------------
+
 Module Name  : B.M.Survey
-Copyright(c) : Yoshi.Sakai ( info@bluemooninc.jp ) @bluemooninc
+Copyright(c) : Yoshi.Sakai ( info(at)bluemooninc.jp ) Bluemooninc inc.
 Home Page    : http://www.bluemooninc.jp/
-Start date   : 2004-05-27
+Project Since: 2004-05-27
 License under: GPL 3
+
 --------------------------------------------------------------------------------
+
+![Top Page](http://dl.dropbox.com/u/31666676/github/bmsurvey_top.png)
+
+![Result](http://dl.dropbox.com/u/31666676/github/bmsurvey_result.png)
 
 *****************
 Special Thanks to
