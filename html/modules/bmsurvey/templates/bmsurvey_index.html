@@ -1,0 +1,14 @@
+<h1><{$smarty.const.BMSURVEY_INDEX_PAGETITLE}></h1>
+
+
+<{$bmsurvey.content.sortnavi.start}><{$smarty.const._MB_NUMBERSTRING}><{$smarty.const._MB_TILDE}>
+<{$bmsurvey.content.sortnavi.end}><{$smarty.const._MB_NUMBERSTRING}>&nbsp;
+(<{$smarty.const._MB_ALL}>&nbsp;<{$bmsurvey.content.sortnavi.total}><{$smarty.const._MB_NUMBERSTRING}>&nbsp;)
+
+<{include file="db:bmsurvey_list.html"}>
+
+<{$bmsurvey.content.pagenavi}>
+
+<{if $manage_on || $mySurvey }>
+<a class="btn btn-primary" href="<{$xoops_url}>/modules/bmsurvey/EditForm/new"><{$smarty.const._MB_Create_a_New_Form}></a>
+<{/if}>

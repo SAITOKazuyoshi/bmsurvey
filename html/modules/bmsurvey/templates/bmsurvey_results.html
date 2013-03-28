@@ -1,0 +1,41 @@
+<h2><{$smarty.const._MB_View_Form_Results}></h2>
+<strong><{$tpl_vars.general->getShow('title')}></strong>
+<label><{$tpl_vars.general->getShow('subtitle')}></label>
+
+<{foreach name=formLoop from=$tpl_vars.form item=form}>
+	<h3>(<{$smarty.foreach.formLoop.iteration}>)<{$form.content}></h3>
+	<{foreach name=barLoop from=$form.tag item=tag}>
+		<{if $form.hasCount}>
+		<{if $tag.content=="Y"}>
+			<label><{$smarty.const._YES}> (<{$tag.value}><{$smarty.const._MB_NUMBERSTRING}>)</label>
+		<{elseif $tag.content=="N"}>
+			<label><{$smarty.const._NO}> (<{$tag.value}><{$smarty.const._MB_NUMBERSTRING}>)</label>
+		<{else}>
+			<label>
+			<{$tag.content}> (<{$tag.value}><{$smarty.const._MB_NUMBERSTRING}>)
+			<{if $tag.otherValue}>
+				<{foreach from=$tag.otherValue item=otherValue}>
+					&nbsp;<small><{$otherValue}></small>
+				<{/foreach}>
+			<{/if}>
+			</label>
+		<{/if}>
+		<div class="progress">
+			<div class="bar <{$tag.bar_color}>" style="width: <{$tag.percentage}>%;">
+				<{$tag.percentage|number_format:2}>%
+			</div>
+		</div>
+		<{else}>
+			<label><{$tag.value}></label>
+		<{/if}>
+	<{/foreach}>
+
+<{/foreach}>
+<div align="center">
+	<a class="btn btn-success" href="<{$xoops_url}>/modules/bmsurvey/Form/forge/<{$tpl_vars.general->getShow('id')}>">
+		<{$smarty.const._BACK}>
+	</a>
+	<a class="btn btn-info" href="<{$xoops_url}>/modules/bmsurvey">
+		<{$smarty.const._RETURN_TOP}>
+	</a>
+</div>

@@ -1,0 +1,158 @@
+<ul id="bmsurvey-list-simple">
+	<table id="bmsurvey-list" class="table table-bordered">
+		<tr class="tbl-th">
+			<th>
+				<{$smarty.const._MB_LIST_TITLE}>
+				<div class="btn-group">
+				<a class="btn btn-mini<{if $bmsurvey.content.sortnavi.sortname eq 'changed' && $bmsurvey.content.sortnavi.sortorder eq 'desc' }> btn-info<{/if}>" href="index.php?sortby=changed&order=desc" target="_top">
+					<{$smarty.const._MB_ORDER_DESC}>
+				</a>
+				<a class="btn btn-mini<{if $bmsurvey.content.sortnavi.sortname eq 'changed' && $bmsurvey.content.sortnavi.sortorder eq 'asc' }> btn-info<{/if}>" href="index.php?sortby=changed&order=asc" target="_top">
+					<{$smarty.const._MB_ORDER_ASC}>
+				</a>
+				</div>
+			</th>
+			<th>
+				<{$smarty.const._MB_LIST_OWNER}>
+			</th>
+			<th>
+				<span><{$smarty.const._MB_FORM_PUBLISHED}></span>
+				<div class="btn-group">
+				<a class="btn btn-mini<{if $bmsurvey.content.sortnavi.sortname eq 'published' && $bmsurvey.content.sortnavi.sortorder eq 'desc' }> btn-info<{/if}>" href="index.php?sortby=published&order=desc" target="_top">
+					<{$smarty.const._MB_ORDER_DESC}>
+				</a>
+				<a class="btn btn-mini<{if $bmsurvey.content.sortnavi.sortname eq 'published' && $bmsurvey.content.sortnavi.sortorder eq 'asc' }> btn-info<{/if}>" href="index.php?sortby=published&order=asc" target="_top">
+					<{$smarty.const._MB_ORDER_ASC}>
+				</a>
+				</div>
+			</th>
+			<th>
+				<span><{$smarty.const._MB_FORM_EXPIRED}></span>
+				<div class="btn-group">
+				<a class="btn btn-mini<{if $bmsurvey.content.sortnavi.sortname eq 'expired' && $bmsurvey.content.sortnavi.sortorder eq 'desc' }> btn-info<{/if}>" href="index.php?sortby=expired&order=desc" target="_top">
+					<{$smarty.const._MB_ORDER_DESC}>
+				</a>
+				<a class="btn btn-mini<{if $bmsurvey.content.sortnavi.sortname eq 'expired' && $bmsurvey.content.sortnavi.sortorder eq 'asc' }> btn-info<{/if}>" href="index.php?sortby=expired&order=asc" target="_top">
+					<{$smarty.const._MB_ORDER_ASC}>
+				</a>
+				</div>
+			</th>
+			<th>
+				<span><{$smarty.const._MB_LIST_SUBMITTED}></span>
+			</th>
+			<{if $manage_on || $mySurvey}>
+			<th>
+				<{$smarty.const._MB_LIST_COL_RESULTS_RESPONDENTS}>
+			</th>
+			<th>
+				<span><{$smarty.const._MB_Change_Form_Status}></span>
+			</th>
+			<th>
+				<span><{$smarty.const._MB_LIST_COL_RESULTS_ANALYZE}></span>
+			</th>
+			<{/if}>
+		</tr>
+		<{foreach item=form from=$bmsurvey.content.forms name=forms}>
+		<{assign var="status" value=$form.generalObject->getShow('status')}>
+		<tr class="<{cycle values='tbl-tr1,tbl-tr2'}>">
+			<td>
+				<span>
+					<{if $status!=4 }>
+					<{* Edit *}>
+					<a href="<{$xoops_url}>/modules/bmsurvey/EditForm/general/<{$form.generalObject->getShow('id')}>" target="_top">
+						<img title="<{$smarty.const.col_control_edit}>" alt="<{$smarty.const.col_control_edit}>"
+							 src="<{$xoops_url}>/modules/bmsurvey/images/icon_edit.png" width="16" height="16"/>
+					</a>
+					<{/if}>
+					<{$form.generalObject->getShow('changed')|date_format:'%Y-%m-%d'}>
+				</span>
+				<{if $form.submitted}>
+					<img src="<{$xoops_url}>/modules/bmsurvey/images/checked.png" />
+				<{/if}>
+				<a href='<{$xoops_url}>/modules/bmsurvey/Form/forge/<{$form.generalObject->getShow("id")}>'>
+					<{$form.generalObject->getShow('title')}>
+				</a>
+			</td>
+			<td>
+				<a href="<{$xoops_url}>/userinfo.php?uid=<{$form.generalObject->getShow('owner')}>" taget="_top">
+					<{$form.uname}>
+				</a>
+			</td>
+			<td>
+				<span><{$form.generalObject->getShow('published')|date_format:'%Y-%m-%d'}></span><br/>
+			</td>
+			<td>
+				<span><{$form.generalObject->getShow('expired')|date_format:'%Y-%m-%d'}></span>
+			</td>
+			<td>
+				<{if $form.submitted}>
+				<{$form.submitted|date_format:'%Y-%m-%d'}>
+				<{/if}>
+			</td>
+			<{if $manage_on || $form.manage_on}>
+			<td>
+				<{$form.resp}>
+			</td>
+			<td>
+				<{* Status *}>
+				<!-- STATUS_ACTIVE=1,STATUS_DONE=2,STATUS_DELETED=4,STATUS_TEST=8 -->
+				<{if $form.generalObject->getShow('status')==0 }>
+				<label class="badge"><{$smarty.const._MB_Editing}></label>
+				<{elseif $form.generalObject->getShow('status')==1 }>
+				<label class="badge badge-success"><{$smarty.const._MB_Active}></label>
+				<{elseif $form.generalObject->getShow('status')==2 }>
+				<label class="badge badge-important"><{$smarty.const._MB_Ended}></label>
+				<{elseif $form.generalObject->getShow('status')==4 }>
+				<label class="badge badge-warning"><{$smarty.const._MB_Archived}></label>
+				<{elseif $form.generalObject->getShow('status')==8 }>
+				<label class="badge badge-info"><{$smarty.const._MB_Testing}></label>
+				<{/if}>
+				<{* Test *}>
+				<{if $status==0 || $status==2}>
+				<a href="<{$xoops_url}>/modules/bmsurvey/Manage/test/<{$form.generalObject->getShow('id')}>" target="_top">
+					<img title="<{$smarty.const._MB_Test}>" alt="<{$smarty.const._MB_Test}>"
+						 src="<{$xoops_url}>/modules/bmsurvey/images/icon_test.png" width="16" height="16"/>
+				</a>
+				<{/if}>
+				<{* Active *}>
+				<{if $status==0}>
+				<a href="<{$xoops_url}>/modules/bmsurvey/Manage/active/<{$form.generalObject->getShow('id')}>" target="_top">
+					<img title="<{$smarty.const._MB_Activate}>" alt="<{$smarty.const._MB_Activate}>"
+						 src="<{$xoops_url}>/modules/bmsurvey/images/icon_public.png" width="16" height="16"/>
+				</a>
+				<{/if}>
+				<{* Delete and public again *}>
+				<{if $status==2 }>
+				<a href="<{$xoops_url}>/modules/bmsurvey/Manage/active/<{$form.generalObject->getShow('id')}>" target="_top">
+					<img title="<{$smarty.const._MB_Activate}>" alt="<{$smarty.const._MB_Activate}>"
+						 src="<{$xoops_url}>/modules/bmsurvey/images/icon_public.png" width="16" height="16"/>
+				</a>
+				<{/if}>
+				<{* Stop *}>
+				<{if $status!=2}>
+				<a href="<{$xoops_url}>/modules/bmsurvey/Manage/stop/<{$form.generalObject->getShow('id')}>" target="_top">
+					<img title="<{$smarty.const._MB_End}>" alt="<{$smarty.const._MB_End}>" src="<{$xoops_url}>/modules/bmsurvey/images/icon_stop.png"
+						 width="16" height="16"/>
+				</a>
+				<{/if}>
+				<{if $status==2 }>
+				<{* Delete*}>
+				<a href="<{$xoops_url}>/modules/bmsurvey/Manage/purge/<{$form.generalObject->getShow('id')}>" target="_top">
+					<img title="<{$smarty.const._AM_BMSURVEY_PURGE}>" alt="<{$smarty.const._AM_BMSURVEY_PURGE}>"
+						 src="<{$xoops_url}>/modules/bmsurvey/images/icon_purge.png" width="16" height="16"/>
+				</a>
+				<{/if}>
+
+			</td>
+			<td>
+				<a href="<{$xoops_url}>/modules/bmsurvey/Results/report/<{$form.generalObject->getShow('id')}>" target="_top">
+					<{$smarty.const._MB_LIST_COL_RESULTS_SPREADSHEET}>
+				</a>
+			</td>
+			<{else}>
+			<td colspan="3"></td>
+			<{/if}>
+		</tr>
+		<{/foreach}>
+	</table>
+</ul>
