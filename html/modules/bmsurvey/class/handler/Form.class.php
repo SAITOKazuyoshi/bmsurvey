@@ -4,7 +4,7 @@
  * @author Marijuana
  */
 if (!defined('XOOPS_ROOT_PATH')) exit();
-class BmSurveyFormObject extends XoopsSimpleObject
+class Bmsurvey_FormObject extends XoopsSimpleObject
 {
 	public function __construct()
 	{
@@ -59,11 +59,11 @@ class BmSurveyFormObject extends XoopsSimpleObject
 	}
 }
 
-class BmSurveyFormHandler extends XoopsObjectGenericHandler
+class Bmsurvey_FormHandler extends XoopsObjectGenericHandler
 {
 	public $mTable = 'bmsurvey_form';
 	public $mPrimary = 'id';
-	public $mClass = 'BmSurveyFormObject';
+	public $mClass = 'Bmsurvey_FormObject';
 
 	public function __construct(&$db)
 	{

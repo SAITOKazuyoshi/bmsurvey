@@ -1,16 +1,20 @@
---------------------------------------------------------------------------------
-
 Module Name  : B.M.Survey
-Copyright(c) : Yoshi.Sakai ( info(at)bluemooninc.jp ) Bluemooninc inc.
-Home Page    : http://www.bluemooninc.jp/
-Project Since: 2004-05-27
-License under: GPL 3
+=========================
 
---------------------------------------------------------------------------------
+  Copyright(c) : Bluemooninc inc. All right reserved.
+  Author       : Yoshi Sakai
+  Home Page    : http://www.bluemooninc.jp/
+  Project Since: 2004-05-27
+  License under: GPL 3
+------------------------------------------------------
 
 ![Top Page](http://dl.dropbox.com/u/31666676/github/bmsurvey_top.png)
 
 ![Result](http://dl.dropbox.com/u/31666676/github/bmsurvey_result.png)
+
+
+V2.00 2013-3-30 Build up with AchtungBaby MVC flame work
+V2.01 2013-4-03 make a New Block from Model_Form
 
 *****************
 Special Thanks to

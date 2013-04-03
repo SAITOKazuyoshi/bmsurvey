@@ -6,23 +6,6 @@
  * Time: 15:55
  * To change this template use File | Settings | File Templates.
  */
-define('TABLE_REALM', $xoopsDB->prefix("bmsurvey_realm"));
-define('TABLE_RESPONDENT', $xoopsDB->prefix("bmsurvey_respondent"));
-define('TABLE_editFormER', $xoopsDB->prefix("bmsurvey_editFormer"));
-define('TABLE_FORM', $xoopsDB->prefix("bmsurvey_form" ));
-define('TABLE_QUESTION_TYPE', $xoopsDB->prefix("bmsurvey_question_type" ));
-define('TABLE_QUESTION', $xoopsDB->prefix("bmsurvey_question" ));
-define('TABLE_QUESTION_CHOICE', $xoopsDB->prefix("bmsurvey_question_choice" ));
-define('TABLE_ACCESS', $xoopsDB->prefix("bmsurvey_access" ));
-define('TABLE_RESPONSE', $xoopsDB->prefix("bmsurvey_response" ));
-define('TABLE_RESPONSE_BOOL', $xoopsDB->prefix("bmsurvey_response_bool" ));
-define('TABLE_RESPONSE_SINGLE', $xoopsDB->prefix("bmsurvey_response_single" ));
-define('TABLE_RESPONSE_MULTIPLE', $xoopsDB->prefix("bmsurvey_response_multiple" ));
-define('TABLE_RESPONSE_RANK', $xoopsDB->prefix("bmsurvey_response_rank" ));
-define('TABLE_RESPONSE_TEXT', $xoopsDB->prefix("bmsurvey_response_text" ));
-define('TABLE_RESPONSE_OTHER', $xoopsDB->prefix("bmsurvey_response_other" ));
-define('TABLE_RESPONSE_DATE', $xoopsDB->prefix("bmsurvey_response_date" ));
-define('TABLE_', $xoopsDB->prefix("bmsurvey_" ));
 
 define('STATUS_EDIT',    0x00);
 define('STATUS_ACTIVE',  0x01);
@@ -39,6 +22,23 @@ abstract class AbstractModel {
 	 */
 	public function __construct() {
 		$this->root = XCube_Root::getSingleton();
+		define('TABLE_REALM', $this->root->mController->mDB->prefix("bmsurvey_realm"));
+		define('TABLE_RESPONDENT', $this->root->mController->mDB->prefix("bmsurvey_respondent"));
+		define('TABLE_editFormER', $this->root->mController->mDB->prefix("bmsurvey_editFormer"));
+		define('TABLE_FORM', $this->root->mController->mDB->prefix("bmsurvey_form" ));
+		define('TABLE_QUESTION_TYPE', $this->root->mController->mDB->prefix("bmsurvey_question_type" ));
+		define('TABLE_QUESTION', $this->root->mController->mDB->prefix("bmsurvey_question" ));
+		define('TABLE_QUESTION_CHOICE', $this->root->mController->mDB->prefix("bmsurvey_question_choice" ));
+		define('TABLE_ACCESS', $this->root->mController->mDB->prefix("bmsurvey_access" ));
+		define('TABLE_RESPONSE', $this->root->mController->mDB->prefix("bmsurvey_response" ));
+		define('TABLE_RESPONSE_BOOL', $this->root->mController->mDB->prefix("bmsurvey_response_bool" ));
+		define('TABLE_RESPONSE_SINGLE', $this->root->mController->mDB->prefix("bmsurvey_response_single" ));
+		define('TABLE_RESPONSE_MULTIPLE', $this->root->mController->mDB->prefix("bmsurvey_response_multiple" ));
+		define('TABLE_RESPONSE_RANK', $this->root->mController->mDB->prefix("bmsurvey_response_rank" ));
+		define('TABLE_RESPONSE_TEXT', $this->root->mController->mDB->prefix("bmsurvey_response_text" ));
+		define('TABLE_RESPONSE_OTHER', $this->root->mController->mDB->prefix("bmsurvey_response_other" ));
+		define('TABLE_RESPONSE_DATE', $this->root->mController->mDB->prefix("bmsurvey_response_date" ));
+		define('TABLE_', $this->root->mController->mDB->prefix("bmsurvey_" ));
 	}
 	protected function getModuleNames($isactive = FALSE)
 	{

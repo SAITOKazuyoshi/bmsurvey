@@ -5,13 +5,13 @@ if(!defined('XOOPS_ROOT_PATH')){
 }
 
 $mydirname = empty( $options[0] ) ? basename( dirname( dirname( __FILE__ ) ) ) : $options[0] ;
-include_once XOOPS_ROOT_PATH.'/modules/'.$mydirname.'/class/FormTable.class.php';
+include_once XOOPS_ROOT_PATH.'/modules/'.$mydirname.'/app/Model/Form.class.php';
 include_once XOOPS_ROOT_PATH.'/modules/'.$mydirname.'/conf.php';
 
 function b_bmsurvey_wait_appl($options){
 	global $xoopsUser;
 	$block = array();
-	FormTable::assign_message($block);
+	Form::assign_message($block);
 	if($xoopsUser && ($xoopsUser->isAdmin())){
 		$block['bmsurvey_applicationNum'] = FormTable::getApplicationNum();
 	}
@@ -19,12 +19,11 @@ function b_bmsurvey_wait_appl($options){
 }
 
 function b_bmsurvey_show($options) {
-	global $xoopsUser;
-	
 	$mydirname = empty( $options[0] ) ? basename( dirname( dirname( __FILE__ ) ) ) : $options[0] ;
 	$block = array();
-	$fmt = new FormTable();
-	$block['form'] = $fmt->get_form_list();
+	$Model_Form = Model_Form::forge();
+	$Model_Form->get_form_list();
+	$block['form'] = $Model_Form->FormList();
 	$block['url'] = XOOPS_URL.'/modules/'.$mydirname;
 	/*
 	$block['show_rss'] = ($options[0] == 1) ? 1 : 0;

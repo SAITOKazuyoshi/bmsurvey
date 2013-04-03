@@ -52,6 +52,7 @@ class Model_Form extends AbstractModel
 	protected $message;
 	protected $root;
 	protected static $groups;
+	protected $FormList=array();        // for form id,title stack
 
 	/**
 	 * get Instance
@@ -343,7 +344,7 @@ class Model_Form extends AbstractModel
 		//
 		// Get Recordcount for page switching
 		//
-		$generalHandler = xoops_getmodulehandler('form');
+		$generalHandler = xoops_getmodulehandler('form',$this->myDirName);
 		$this->total = $generalHandler->getCount($criteria);
 		if (!empty($formId)) {
 			if ($this->sortorder == "DESC") {
@@ -359,7 +360,7 @@ class Model_Form extends AbstractModel
 		$criteria->setStart($this->start);
 		$criteria->setLimit($this->perpage);
 		$generalObjects = $generalHandler->getObjects($criteria);
-		$responseHandler = xoops_getmodulehandler('response');
+		$responseHandler = xoops_getmodulehandler('response',$this->myDirName);
 		$GulHandler = xoops_getmodulehandler('groups_users_link', 'user');
 		$tpl_vars = array();
 		foreach ($generalObjects as $generalObject) {
@@ -369,6 +370,7 @@ class Model_Form extends AbstractModel
 			} else {
 				$submitted = NULL;
 			}
+			$this->FormList[$generalObject->getVar('id')]=$generalObject->getVar('title');
 			$row = array(
 				'realm' => $this->_isGroupsOfUser($GulHandler, $generalObject->getVar('owner')),
 				'manage_on' => $this->set_manageFlag( $generalObject->getVar('owner') ),
@@ -386,7 +388,9 @@ class Model_Form extends AbstractModel
 		}
 		return $tpl_vars;
 	}
-
+	public function &FormList(){
+		return $this->FormList;
+	}
 	/**
 	 * 同じグループに所属するユーザIDをすべて返す
 	 * @param $xoopsUser

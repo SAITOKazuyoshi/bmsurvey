@@ -17,7 +17,7 @@ Global $xoopsDB, $xoopsUser, $xoopsModule;
 Global $xoopsModuleConfig;
 
 $modversion['name'] = _MI_BMSURVEY_NAME . $mydirnumber ;
-$modversion['version'] = 2.00;
+$modversion['version'] = 2.01;
 $modversion['description'] = _MI_BMSURVEY_DESC;
 $modversion['author'] = "Yoshi Sakai";
 $modversion['credits'] = "Copright(c) Bluemoon inc. All right reserved.";

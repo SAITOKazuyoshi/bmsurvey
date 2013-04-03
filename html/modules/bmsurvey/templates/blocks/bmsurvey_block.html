@@ -1,9 +1,11 @@
 <!-- begin of bmsurvey blog block -->
-<{foreach from=$block.form item=list }>
-<li><{$list.last_update_m}>&nbsp; <a
-	href="<{$block.url}>/webform.php?name=<{$list.name}>">
-		<{$list.title}> </a>
+<ul>
+<{foreach from=$block.form item=title key=id}>
+<li>
+<a href='<{$xoops_url}>/modules/bmsurvey/Form/forge/<{$id}>'>
+	<{$title}>
+</a>
 </li>
-<br />
 <{/foreach}>
+</ul>
 <!-- end of bmsurvey blog block -->
